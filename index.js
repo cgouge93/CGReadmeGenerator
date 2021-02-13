@@ -26,10 +26,23 @@ const questions = [
         name: 'description',
     },
     {
+        type: 'confirm',
+        name: 'confirmLicense',
+        message: 'Does your project have a license?',
+        default: false
+    },
+    {
         type: 'list',
         message: 'What kind of license should your project have?',
         name: 'license',
-        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'none'],
+        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3'],
+        when: ({ confirmLicense }) => {
+            if (confirmLicense) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     },
     {
         type: 'input',
